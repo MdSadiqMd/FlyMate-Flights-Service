@@ -1,16 +1,6 @@
 import { DataTypes, Model, Sequelize, ModelStatic } from "sequelize";
 
-interface FlightAttributes {
-    flightNumber: string;
-    airplaneId: number;
-    departureAirportId: string;
-    arrivalAirportId: string;
-    arrivalTime: Date;
-    departureTime: Date;
-    price: number;
-    boardingGate?: string;
-    totalSeats: number;
-}
+import { FlightAttributes } from "../types";
 
 export class Flight extends Model<FlightAttributes> implements FlightAttributes {
     public flightNumber!: string;
