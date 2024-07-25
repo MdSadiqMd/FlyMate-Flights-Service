@@ -21,6 +21,7 @@
     "express": "^4.19.2",
     "http-status-codes": "^2.3.0",
     "nodemon": "^3.1.4",
+    "sequelize": "^6.37.3",
     "ts-node": "^10.9.2",
     "winston": "^3.13.1"
   }
