@@ -75,7 +75,7 @@ async function getFlight(id: string) {
     }
 }
 
-async function updateSeats(data: { flightId: number; seats: number; dec?: boolean; }) {
+async function updateSeats(data: { flightId: string; seats: string; dec?: boolean; }) {
     try {
         const response = await flightRepository.updateRemainingSeats(data.flightId, data.seats, data.dec);
         return response;
@@ -85,7 +85,7 @@ async function updateSeats(data: { flightId: number; seats: number; dec?: boolea
     }
 }
 
-export {
+export const FlightService = {
     createFlight,
     getAllFlights,
     getFlight,
