@@ -3,3 +3,4 @@ node_modules/
 dist/
 .docker/
 src/config/config.json
+combined.log

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Got it! Here's the updated README with your personal examples included:",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
