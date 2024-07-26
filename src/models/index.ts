@@ -54,7 +54,7 @@ fs
 
 Object.keys(db).forEach(modelName => {
     const model = db[modelName] as any;
-    if (model && typeof model.associate === 'function') {
+    if (model.associate) {
         model.associate(db);
     }
 });
