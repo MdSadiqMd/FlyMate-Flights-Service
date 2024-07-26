@@ -1,7 +1,7 @@
-import express from "express";
+const express = require("express");
 
-import config from "./config/server.config.js";
-import logger from "./config/logger.config.js";
+const config = require("./config/server.config.js");
+const logger = require("./config/logger.config.js");
 
 const app = express();
 

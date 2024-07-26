@@ -7,7 +7,7 @@ Got it! Here's the updated README with your personal examples included:
 1. Install the necessary packages:
 
    ```bash
-   npm install mysql sequelize sequelize-cli @types/sequelize
+   npm install mysql2 sequelize sequelize-cli @types/sequelize
    ```
 
 2. Change to the `src` directory below all should be done in `src`:
@@ -24,7 +24,7 @@ Got it! Here's the updated README with your personal examples included:
 
 ## Configuration
 
-4. Configure your database by editing `config/config.json`. Provide the database name and password if needed.
+4. Configure your database by editing `config/config.json`. Provide the database name and password.
 
 ## Database Creation
 
@@ -44,7 +44,7 @@ Got it! Here's the updated README with your personal examples included:
 
 ## Model Creation
 
-7. Create a model using Sequelize CLI:
+7. Create a model(table) using Sequelize CLI:
 
    ```bash
    npx sequelize model:generate --name Airplane --attributes modelNumber:string,capacity:integer
