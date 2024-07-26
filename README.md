@@ -1,6 +1,5 @@
 Got it! Here's the updated README with your personal examples included:
 
-```markdown
 # Sequelize Setup Guide
 
 ## Installation
@@ -51,7 +50,7 @@ Got it! Here's the updated README with your personal examples included:
    npx sequelize model:generate --name Airplane --attributes modelNumber:string,capacity:integer
    ```
 
-   Note: The generated model will be in JavaScript. To convert it to TypeScript, manually remove the `id` field in the converted code by AI, as migrations will internally create the `id`.
+   Note: The generated model will be in JavaScript. To convert it to TypeScript, manually remove the `id` field in the converted code (in init) by AI, as migrations will internally create the `id`.
 
 ## Editing Models
 
@@ -80,5 +79,3 @@ Got it! Here's the updated README with your personal examples included:
     ```bash
     npx sequelize db:migrate:undo:all
     ```
-
-```
