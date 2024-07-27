@@ -18,26 +18,6 @@ class CrudRepository {
     }
   }
 
-  async destroy(data) {
-    try {
-      const response = await this.model.destroy({
-        where: {
-          id: data,
-        },
-      });
-      if (!response) {
-        throw new AppError(
-          "Not able to fund the resource",
-          StatusCodes.NOT_FOUND
-        );
-      }
-      return response;
-    } catch (error) {
-      logger.error(`Error in deleting data in crud Repository: ${error}`);
-      throw error;
-    }
-  }
-
   async get(data) {
     try {
       const response = await this.model.findByPk(data);
@@ -71,9 +51,35 @@ class CrudRepository {
           id: id,
         },
       });
+      if (!response[0]) {
+        throw new AppError(
+          "Not able to find or update the resource",
+          StatusCodes.NOT_FOUND
+        );
+      }
       return response;
     } catch (error) {
       logger.error(`Error in Updating data in crud Repository: ${error}`);
+      throw error;
+    }
+  }
+
+  async destroy(data) {
+    try {
+      const response = await this.model.destroy({
+        where: {
+          id: data,
+        },
+      });
+      if (!response) {
+        throw new AppError(
+          "Not able to fund the resource",
+          StatusCodes.NOT_FOUND
+        );
+      }
+      return response;
+    } catch (error) {
+      logger.error(`Error in deleting data in crud Repository: ${error}`);
       throw error;
     }
   }
