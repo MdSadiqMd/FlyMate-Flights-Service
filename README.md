@@ -1,5 +1,7 @@
 Got it! Here's the updated README with your personal examples included:
 
+Official sequelize-cli README.md for commands --> https://github.com/sequelize/cli
+
 # Sequelize Setup Guide
 
 ## Installation
@@ -55,12 +57,11 @@ Got it! Here's the updated README with your personal examples included:
 ## Editing Models
 
 8. To edit the model, modify the migration file and create a new migration. Commit your changes.
-    
    - If you need to add another change, undo the previous migration and add the new migration to the database.
 
 ## Applying Migrations
 
-9. Apply the migration to replicate the table in the database:
+9. Apply the migration (Versions of the schema of Database) to replicate the table in the database:
 
    ```bash
    npx sequelize db:migrate
@@ -79,3 +80,36 @@ Got it! Here's the updated README with your personal examples included:
     ```bash
     npx sequelize db:migrate:undo:all
     ```
+
+## Seeders
+
+12. Seeders are the dummy data in the application to generate seeders we use:
+
+    ```bash
+    npx sequelize seed:generate --name <any name of seeder>
+    ```
+
+    And Now we can add the data in this generated seed files
+    Up Function takes the data to add and the Down function takes the `logic` of data that needed to be deleted
+
+13. To add these are seeds(data) to the database run:
+
+    To seed(add) one Particular File:
+
+    ```bash
+    npx sequelize db:seed --seed file_name.js
+    ```
+
+    To seed(add) All Files:
+
+    ```bash
+    npx sequelize db:seed:all
+    ```
+
+14. To Undo the seed files:
+
+    ```bash
+    npx sequelize db:seed:undo:all
+    ```
+
+    Note: This step will only take place if there is an down function in the seed file
