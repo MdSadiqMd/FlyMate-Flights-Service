@@ -113,3 +113,30 @@ Official sequelize-cli README.md for commands --> https://github.com/sequelize/c
     ```
 
     Note: This step will only take place if there is an down function in the seed file
+
+## Associations
+
+Associations are the ones used to connect two models using primary key and foreign keys
+
+15. Create an seperate migration (only migration) for particular association
+
+    ```bash
+    npx sequelize migration:generate --name <name of the migration>
+    ```
+
+    In this case we want `CityId` of `Airports` act as `Foreign Key` and `id` of `Cities` Table as `Primary Key`
+    Thus write the up and down functions accordingly in created Migration file
+
+    # Note:
+
+    Now add this to database by doing `Step: 9`
+
+    Check it by using `desc Airports;` and you should see `MUL` if it converted to Foreign Key
+
+16. Now Go to Models which have foreign key and Primary Key and add Associations Code in associate Methods
+
+    The Foreign Key Model will have `belongsTo` which connects to the Primary Key Model
+
+    The Primary Key Model will have `hasMany` which connects to the Foreign Key Model
+
+    `CASCADE` Means the Update and Delete changes will propagate
