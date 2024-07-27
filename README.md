@@ -12,7 +12,7 @@ Official sequelize-cli README.md for commands --> https://github.com/sequelize/c
    npm install mysql2 sequelize sequelize-cli @types/sequelize
    ```
 
-2. Change to the `src` directory below all should be done in `src`:
+2. Change to the `src` directory `below all should be done in src`:
 
    ```bash
    cd src

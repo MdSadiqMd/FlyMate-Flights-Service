@@ -2,6 +2,7 @@ const { StatusCodes } = require("http-status-codes");
 
 const { AirplaneRepository } = require("../repositories");
 const AppError = require("../errors/App.error");
+const logger = require("../config/logger.config");
 
 const airplaneRepository = new AirplaneRepository();
 
@@ -10,6 +11,7 @@ async function createAirplane(data) {
     const airplane = await airplaneRepository.create(data);
     return airplane;
   } catch (error) {
+    logger.error(`Error in Creating Airplanes in Services: ${error}`);
     if (error.name == "SequelizeValidationError") {
       let explanation = [];
       error.errors.forEach((err) => {
@@ -29,8 +31,9 @@ async function getAirplanes() {
     const airplanes = await airplaneRepository.getAll();
     return airplanes;
   } catch (error) {
+    logger.error(`Error in Fetching all Airplanes in Services: ${error}`);
     throw new AppError(
-      "Cannot fetch data of all the airplanes",
+      "Cannot fetching data of all the airplanes",
       StatusCodes.INTERNAL_SERVER_ERROR
     );
   }
@@ -41,6 +44,7 @@ async function getAirplane(id) {
     const airplane = await airplaneRepository.get(id);
     return airplane;
   } catch (error) {
+    logger.error(`Error in Fetching Airplane in Services: ${error}`);
     if (error.statusCode == StatusCodes.NOT_FOUND) {
       throw new AppError(
         "The airplane you requested is not present",
@@ -48,7 +52,7 @@ async function getAirplane(id) {
       );
     }
     throw new AppError(
-      "Cannot fetch data of all the airplanes",
+      "Cannot fetch data of the airplane",
       StatusCodes.INTERNAL_SERVER_ERROR
     );
   }
@@ -59,6 +63,7 @@ async function destroyAirplane(id) {
     const response = await airplaneRepository.destroy(id);
     return response;
   } catch (error) {
+    logger.error(`Error in Deleting Airplane in Services: ${error}`);
     if (error.statusCode == StatusCodes.NOT_FOUND) {
       throw new AppError(
         "The airplane you requested to delete is not present",
@@ -66,7 +71,7 @@ async function destroyAirplane(id) {
       );
     }
     throw new AppError(
-      "Cannot fetch data of all the airplanes",
+      "Cannot deleting airplane",
       StatusCodes.INTERNAL_SERVER_ERROR
     );
   }
