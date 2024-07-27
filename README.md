@@ -94,19 +94,19 @@ Official sequelize-cli README.md for commands --> https://github.com/sequelize/c
 
 13. To add these are seeds(data) to the database run:
 
-    To seed(add) one Particular File:
+    To seed (add) one Particular File:
 
     ```bash
     npx sequelize db:seed --seed file_name.js
     ```
 
-    To seed(add) All Files:
+    To seed (add) All Files:
 
     ```bash
     npx sequelize db:seed:all
     ```
 
-14. To Undo the seed files:
+14. To Undo the seed file changes in DB:
 
     ```bash
     npx sequelize db:seed:undo:all
