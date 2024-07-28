@@ -127,7 +127,7 @@ Associations are the ones used to connect two models using primary key and forei
     In this case we want `CityId` of `Airports` act as `Foreign Key` and `id` of `Cities` Table as `Primary Key`
     Thus write the up and down functions accordingly in created Migration file
 
-    # Note:
+    **Note**:
 
     Now add this to database by doing `Step: 9`
 
@@ -139,4 +139,22 @@ Associations are the ones used to connect two models using primary key and forei
 
     The Primary Key Model will have `hasMany` which connects to the Foreign Key Model
 
-    `CASCADE` Means the Update and Delete changes will propagate
+    `CASCADE` Means the Update and Delete changes will propagate that means if we Delete an City then it's coresponding Airports will be deleted
+
+17. Now sequelize gives us powers to interact directly using code like
+
+    ```javascript
+    const vijayawada = await City.findByPk(1);
+    await Airport.create({
+      name: "guntur2",
+      code: "VDJ",
+      cityId: 1,
+    });
+    const airportnew = await vijayawada.createAirport({
+      name: "guntur1",
+      code: "VDJ",
+    });
+    const airports = await vijayawada.getAirports();
+    ```
+
+    The best part we can execute this code without writing `.createAirport()` and `.getAirports()` as these are provided directly by Sequelize for us
