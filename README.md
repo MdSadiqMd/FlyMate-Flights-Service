@@ -118,7 +118,10 @@ Official sequelize-cli README.md for commands --> https://github.com/sequelize/c
 
 Associations are the ones used to connect two models using primary key and foreign keys
 
-15. Create an seperate migration (only migration) for particular association
+**Note**:
+We can also add the migrations in the same file without creating an other file for reference check `20240727142204-create-airport.js`
+
+15. Create an seperate migration (only migration) for particular association (for reference check `20240728095046-create-flight.js`)
 
     ```bash
     npx sequelize migration:generate --name <name of the migration>
