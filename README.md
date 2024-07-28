@@ -161,3 +161,114 @@ We can also add the migrations in the same file without creating an other file f
     ```
 
     The best part we can execute this code without writing `.createAirport()` and `.getAirports()` as these are provided directly by Sequelize for us
+
+## Joins
+
+18. If we want to get Data of one flight we need to make more requests because we need to get information from different tables with are connected with Primary and foreign Keys thus we need to write joins to get the data collectively rather doing extra calls
+    Thus here is the code block powered with `Sequelize` by which you can do joins
+
+    It is usually written in Repository Layer
+
+    **Note: **
+    The alias given below should also be give in the associate functions in the respective Models
+
+    ```javascript
+    // The below block joins the details of different tables that are connected with primary and foreign keys
+      include: [
+        // for joins --> No need to make differnet requests using join make one request to get all data asscoiated with primary and foreign keys
+        {
+          model: Airplane,
+          required: true, // for eager loading
+          as: "airplaneDetail",
+        },
+        {
+          model: Airport,
+          required: true,
+          as: "departureAirport",
+          on: {
+            // It will defaultly check airplane.id = id to change it to use code = id we use on function
+            col1: Sequelize.where(
+              Sequelize.col("Flight.departureAirportId"),
+              "=",
+              Sequelize.col("departureAirport.code")
+            ),
+          },
+          include: { // another level of join
+            model: City,
+            required: true,
+          },
+        },
+        {
+          model: Airport,
+          required: true,
+          as: "arrivalAirport",
+          on: {
+            col1: Sequelize.where(
+              Sequelize.col("Flight.arrivalAirportId"),
+              "=",
+              Sequelize.col("arrivalAirport.code")
+            ),
+          },
+          include: {
+            model: City,
+            required: true,
+          },
+        },
+      ],
+    ```
+
+    The Excepted Ouput as follows
+
+    ```json
+    {
+      "id": 1,
+      "flightNumber": "UK 808",
+      "airplaneId": 8,
+      "departureAirportId": "VDJ",
+      "arrivalAirportId": "HYD",
+      "arrivalTime": "2024-07-27T23:03:12.000Z",
+      "departureTime": "2024-07-27T23:03:01.000Z",
+      "price": 3500,
+      "boardingGate": "",
+      "totalSeats": 120,
+      "createdAt": "2024-07-28T12:19:35.000Z",
+      "updatedAt": "2024-07-28T12:19:35.000Z",
+      "airplaneDetail": {
+        "id": 8,
+        "modelNumber": "boeing777",
+        "capacity": 450,
+        "createdAt": "2024-07-27T10:45:49.000Z",
+        "updatedAt": "2024-07-27T10:45:49.000Z"
+      },
+      "departureAirport": {
+        "id": 1,
+        "name": "vijayawada",
+        "code": "VDJ",
+        "address": null,
+        "cityId": 1,
+        "createdAt": "2024-07-28T09:30:54.000Z",
+        "updatedAt": "2024-07-28T10:52:16.000Z",
+        "City": {
+          "id": 1,
+          "name": "vijayawada",
+          "createdAt": "2024-07-27T13:04:03.000Z",
+          "updatedAt": "2024-07-27T13:04:03.000Z"
+        }
+      },
+      "arrivalAirport": {
+        "id": 8,
+        "name": "hyderabad",
+        "code": "HYD",
+        "address": "ekkada paditey akkada",
+        "cityId": 14,
+        "createdAt": "2024-07-28T12:00:06.000Z",
+        "updatedAt": "2024-07-28T12:00:06.000Z",
+        "City": {
+          "id": 14,
+          "name": "hyderabad",
+          "createdAt": "2024-07-28T10:42:05.000Z",
+          "updatedAt": "2024-07-28T10:42:05.000Z"
+        }
+      }
+    }
+    ```
