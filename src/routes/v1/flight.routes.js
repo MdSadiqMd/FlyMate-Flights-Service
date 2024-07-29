@@ -13,7 +13,7 @@ router.post(
 router.get("/", FlightController.getAllFlights);
 router.get("/:id", FlightController.getFlight);
 router.patch(
-  "/:id",
+  "/:id/seats",
   FlightMiddlewares.validateUpdateSeatsRequest,
   FlightController.updateSeats
 );

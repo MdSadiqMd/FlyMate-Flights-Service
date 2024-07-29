@@ -3,5 +3,5 @@ module.exports = {
   SuccessResponse: require("./successResponse.util"),
   compareDateTime: require("./compareDateTime.util"),
   Enums: require("./enums.util"),
-  addRowLockOnFlights: require("./query.util"),
+  addRowLockOnFlights: require("./query.util").addRowLockOnFlights,
 };
